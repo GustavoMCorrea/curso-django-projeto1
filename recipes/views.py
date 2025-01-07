@@ -1,11 +1,7 @@
 from django.http import HttpResponse
-from django.urls import path
+from django.shortcuts import render
 
 def home(request):
-    return HttpResponse('Hello, World!')
+    return render(request, 'recipes/pages/home.html')
 
-def about(request):
-    return HttpResponse('Sobre')
 
-def contact(request):
-    return HttpResponse('Contato')
