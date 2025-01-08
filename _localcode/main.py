@@ -27,7 +27,8 @@ def make_recipe():
         'cover':{
             'url': 'https://loremflickr.com/%s/%s/food,cooking' % rand_ratio(),
         }
-
-
-
     }
+
+if __name__ == '__main__':
+    from pprint import pprint
+    pprint(make_recipe())
