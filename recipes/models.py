@@ -1,5 +1,9 @@
 from django.db import models
 
+class Category(models.Model):
+    name = models.CharField(max_length=100)
+
+
 class Recipe(models.Model):
     id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=100,default='')
@@ -14,8 +18,4 @@ class Recipe(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     is_published = models.BooleanField(default=False)
     cover = models.ImageField(upload_to='recipes/covers/%Y/%m/%d/')
-
-
-
-    def __str__(self):
-        return self.title
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
