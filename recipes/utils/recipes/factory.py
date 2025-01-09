@@ -8,6 +8,7 @@ def rand_ratio():
 fake = Faker('pt_BR')
 
 def make_recipe():
+    ratio = rand_ratio()
     return {
         'title': fake.sentence(nb_words=6),
         'description': fake.sentence(nb_words=12),
@@ -15,7 +16,7 @@ def make_recipe():
         'preparation_time_unit':'Minutos',
         'servings':fake.random_number(digits=2, fix_len=True),
         'servings_unit': 'Porção',
-        'preparetion_steps': fake.text(3000),
+        'preparation_steps': fake.text(3000),
         'created_at': fake.date_time(),
         'author': {
             'first_name': fake.first_name(),
@@ -25,7 +26,7 @@ def make_recipe():
             'name': fake.word(),
         },
         'cover':{
-            'url': 'https://loremflickr.com/%s/%s/food,cooking' % rand_ratio(),
+            'url': 'https://loremflickr.com/%s/%s/food' % ratio,
         }
     }
 
