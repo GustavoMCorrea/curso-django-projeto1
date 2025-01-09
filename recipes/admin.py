@@ -4,6 +4,7 @@ from .models import Category, Recipe
 
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ['name']
+    
 
 class RecipeAdmin(admin.ModelAdmin):
     list_display = ['title', 'category', 'is_published', 'created_at', 'updated_at']
