@@ -9,8 +9,15 @@ def home(request):
     return render(request, 'recipes/pages/home.html', context={ 'recipes':recipes })
 
 def category(request, category_id):
-    recipe= Recipe.objects.filter(category__id=category_id, is_published=True).order_by('id')
-    return render(request, 'recipes/pages/category.html', context={ 'recipes':recipe })
+    try:
+        recipe = Recipe.objects.filter(category__id=category_id, is_published=True).order_by('id')
+        if not recipe.exists():
+            raise Recipe.DoesNotExist
+        return render(request, 'recipes/pages/category.html', context={ 'recipes':recipe , 'title': f'{recipe.first().category.name} - Category'})
+    except Recipe.DoesNotExist:
+        return HttpResponse('Categoria não encontrada', status=404)
+
+    
 
 def recipes(request,id):
     recipe = Recipe.objects.get(id=id)
