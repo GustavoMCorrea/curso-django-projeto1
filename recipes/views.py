@@ -18,7 +18,10 @@ def category(request, category_id):
 
     
 def recipes(request,id):
-    recipe = Recipe.objects.get(id=id)
+    try:
+        recipe = get_object_or_404(Recipe, id=id, is_published=True)
+    except Http404:
+        return HttpResponse('Receita não encontrada', status=404)
     return render(request, 'recipes/pages/recipe-view.html', context={ 'recipe':recipe, 'is_detail_page':True })
 
 
