@@ -19,6 +19,6 @@ def category(request, category_id):
     
 def recipes(request,id):
     recipe = Recipe.objects.get(id=id)
-    return render(request, 'recipes/pages/recipe-view.html', context={ 'recipe':recipe})
+    return render(request, 'recipes/pages/recipe-view.html', context={ 'recipe':recipe, 'is_detail_page':True })
 
 
