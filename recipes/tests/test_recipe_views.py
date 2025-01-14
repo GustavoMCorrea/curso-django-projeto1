@@ -21,3 +21,11 @@ class RecipeViewTest(TestCase):
         url = reverse('recipes:recipe', kwargs={'id': 1})
         view = resolve(url)
         self.assertIs(view.func, views.recipes)
+
+    def test_recipe_home_view_returns_status_200(self):
+        response = self.client.get(reverse('recipes:home'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_recipe_home_view_loads_correct_template(self):
+        response = self.client.get(reverse('recipes:home'))
+        self.assertTemplateUsed(response, 'recipes/pages/home.html')
